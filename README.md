@@ -6,8 +6,7 @@ This is in principle a fully functional solver for the N-Queens problem and does
 
 The problems are solved correctly:
 
-```julia-repl
-
+```julia
 julia> using TypingTheJuliaInterview
 ┌ Info: Precompiling TypingTheJuliaInterview [4eb64776-e9a6-423b-90eb-541048eb2028]
 └ @ Base loading.jl:2486
@@ -17,14 +16,17 @@ julia> const TTJI = TypingTheJuliaInterview
 TypingTheJuliaInterview
 
 julia> TTJI.main()
-Cons{Queen{N5, N1}, Cons{Queen{N4, N3}, Cons{Queen{N3, N5}, Cons{Queen{N2, Z}, Cons{Queen{N1, N2}, Cons{Queen{Z, N4}, Nil}}}}}}```
+Cons{Queen{N5, N1}, Cons{Queen{N4, N3}, Cons{Queen{N3, N5}, Cons{Queen{N2, Z}, Cons{Queen{N1, N2}, Cons{Queen{Z, N4}, Nil}}}}}}
+```
 
 but, unfortunately, the compiler gives up when inferring that result due to some recursion heuristics:
 
-```julia-repl
+```julia
 julia> TTJI.onlyret(TTJI.Solution{N6}, ())
 Any
 ```
+
+It should be `Type{Cons{Queen{N5, N1}, Cons{Queen{N4, N3}, Cons{Queen{N3, N5}, Cons{Queen{N2, Z}, Cons{Queen{N1, N2}, Cons{Queen{Z, N4}, Nil}}}}}}}`.
 
 Also, this solver is not at all performant, and more a toy to show what you can do with the type system. 
 
